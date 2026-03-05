@@ -12,7 +12,7 @@ class Perceptron:
         return 1 if x >= 0 else -1
 
     def predict(self, x):
-        # Výpočet dot productu vstupů a vah (včetně biasu)
+        # Výpočet dot productu vstupů a vah
         z = np.dot(x, self.weights[1:]) + self.weights[0]
         return self.activation(z)
 
