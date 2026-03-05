@@ -37,3 +37,16 @@ První úloha demonstruje schopnost jednoduchého perceptronu naučit se lineár
 ![Perceptron Result](results/01_perceptron/perceptron_result.png)
 
 ---
+
+### Task 2: Jednoduchá neuronová síť - Problém XOR
+Druhá úloha demonstruje schopnost jednoduché neuronové sítě řešit nelineární separaci dat pomocí logické funkce XOR. Cílem bylo klasifikovat 4 vstupní kombinace podle logické funkce XOR pomocí jednoduché neuronové sítě složené ze tří perceptronů (OR, NAND, AND).
+
+**Dosažené výsledky:**
+* **Dataset:** 4 vstupní kombinace pro logickou funkci XOR: [0,0], [0,1], [1,0], [1,1].
+* **Model:** Třívrstvá neuronová síť složená ze tří perceptronů (skrytá vrstva: OR a NAND, výstupní vrstva: AND).
+* **Přesnost:** Síť úspěšně klasifikovala všechny čtyři možné vstupy (100% přesnost).
+* **Vizualizace:** Barevné oblasti představují rozhodovací prostor sítě, který umožňuje nelineární separaci dat. Červené body představují XOR=1, modré XOR=0.
+
+![XOR Result](results/02_xor_logic/xor_decision_result.png)
+
+---
