@@ -12,7 +12,7 @@ Všechny algoritmy jsou implementovány v jazyce **Python** s důrazem na čisto
 | Úloha | Název problému | Status | Body |
 | :--- | :--- | :---: | :---: |
 | **Task 1** | **Perceptron: point on the line** | ✅ Hotovo | / 3 |
-| Task 2 | Simple neural network: XOR problem | 🔄 Probíhá | / 4 |
+| Task 2 | Simple neural network: XOR problem | ✅ Hotovo  | / 4 |
 | Task 3 | Hopfield network | ⏳ Čeká | / 4 |
 | Task 4 | Q-learning: Find the cheese | ⏳ Čeká | / 4 |
 | Task 6 | L-systems | ⏳ Čeká | / 3 |
