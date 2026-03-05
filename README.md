@@ -1,4 +1,4 @@
-# Unconventional Algorithms & Nature Inspired Computing 
+# Unconventional Algorithms 
 
 Tento projekt je zaměřen na implementaci a vizualizaci nekonvenčních algoritmů v rámci semestrální práce. Cílem je prozkoumat různé výpočetní modely od neuronových sítí po fraktální geometrii a teorii chaosu.
 
@@ -7,20 +7,20 @@ Všechny algoritmy jsou implementovány v jazyce **Python** s důrazem na čisto
 
 ---
 
-## 📅 Plán projektu a status odevzdání
+##  Plán projektu a status odevzdání
 
-| Úloha | Název problému | Status | Body |
-| :--- | :--- | :---: | :---: |
-| **Task 1** | **Perceptron: point on the line** | ✅ Hotovo | / 3 |
-| Task 2 | Simple neural network: XOR problem | ✅ Hotovo  | / 4 |
-| Task 3 | Hopfield network | ⏳ Čeká | / 4 |
-| Task 4 | Q-learning: Find the cheese | ⏳ Čeká | / 4 |
-| Task 6 | L-systems | ⏳ Čeká | / 3 |
-| Task 7 | IFS (Iterated Function Systems) | ⏳ Čeká | / 4 |
-| Task 8 | Mandelbrot or Julia set | ⏳ Čeká | / 4 |
-| Task 9 | 2D country using fractal geometry | ⏳ Čeká | / 4 |
-| Task 10 | Theory of chaos: Logistic map | ⏳ Čeká | / 4 |
-| Task 12 | Cellular automata: Forest fire | ⏳ Čeká | / 3 |
+| Úloha | Název problému | Status | Body  |
+| :--- | :--- | :---: |:-----:|
+| **Task 1** | **Perceptron: point on the line** | ✅ Hotovo | 4 / 3 |
+| Task 2 | Simple neural network: XOR problem | ✅ Hotovo  | 5 / 4 |
+| Task 3 | Hopfield network | ⏳ Čeká |  / 4  |
+| Task 4 | Q-learning: Find the cheese | ⏳ Čeká |  / 4  |
+| Task 6 | L-systems | ⏳ Čeká |  / 3  |
+| Task 7 | IFS (Iterated Function Systems) | ⏳ Čeká |  / 4  |
+| Task 8 | Mandelbrot or Julia set | ⏳ Čeká |  / 4  |
+| Task 9 | 2D country using fractal geometry | ⏳ Čeká |  / 4  |
+| Task 10 | Theory of chaos: Logistic map | ⏳ Čeká |  / 4  |
+| Task 12 | Cellular automata: Forest fire | ⏳ Čeká |  / 3  |
 
 ---
 

@@ -2,7 +2,7 @@ import numpy as np
 
 class Perceptron:
     def __init__(self, input_size, lr=0.1, epochs=100):
-        # Inicializace vah (x, y + bias) malými náhodnými čísly
+        # Inicializace vah
         self.weights = np.random.randn(input_size + 1) * 0.01
         self.lr = lr
         self.epochs = epochs
