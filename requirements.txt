@@ -2,3 +2,5 @@ numpy
 matplotlib
 jupyter
 pandas
+gymnasium[classic_control]
+torch
