@@ -8,19 +8,19 @@ from src.models.q_learning import QLearningModel
 class QLearningApp:
     def __init__(self, root, rows=10, cols=10):
         self.root = root
-        self.root.title("Task 4 - Q-Learning: Find the Cheese (Icon Edition)")
+        self.root.title("Task 4 - Q-Learning: Find the Cheese")
         self.rows, self.cols = rows, cols
         self.cell_size = 40
 
         self.model = QLearningModel(rows, cols)
-        self.grid = [[None for _ in range(cols)] for _ in range(rows)]  # [cite: 4]
+        self.grid = [[None for _ in range(cols)] for _ in range(rows)]
         self.mouse_pos = [0, 0]
         self.start_pos = [0, 0]
 
         self.training_in_progress = False
         self.demo_in_progress = False
         self.current_episode = 0
-        self.max_episodes = 300  # [cite: 6]
+        self.max_episodes = 300
 
         # Načtení ikon
         self.icons = {}
@@ -45,15 +45,9 @@ class QLearningApp:
             if os.path.exists(full_path):
                 try:
                     img = tk.PhotoImage(file=full_path)
-
-                    # Výpočet zmenšení (subsample)
-                    # Pokud je obrázek např. 400x400 a cell_size je 40,
-                    # musíme vzít každý 10. pixel (400 // 40 = 10)
                     width = img.width()
                     height = img.height()
 
-                    # Zmenšení pomocí subsample (bere pouze každý X-tý pixel)
-                    # Funguje nejlépe, když jsou obrázky čtvercové a větší než 40px
                     ratio_x = width // self.cell_size
                     ratio_y = height // self.cell_size
 
@@ -116,7 +110,7 @@ class QLearningApp:
                 state = r * self.cols + c
                 max_q = np.max(self.model.q_table[state])
 
-                # Podbarvení (Heatmapa) zůstává pro přehlednost [cite: 72]
+                # Heatmapa zůstává pro přehlednost
                 color = "white"
                 if max_q > 0 and content is None:
                     color = "#e6ffed"
@@ -141,7 +135,7 @@ class QLearningApp:
                         # Vykreslení obrázku doprostřed buňky
                         self.canvas.create_image(x1 + 20, y1 + 20, image=self.icons[obj_key])
                     else:
-                        # Záložní text, pokud obrázek chybí [cite: 4]
+                        # Záložní text, pokud obrázek chybí
                         text_colors = {'M': "#87CEFA", 'W': "#555", 'T': "red", 'C': "orange"}
                         self.canvas.create_text(x1 + 20, y1 + 20, text=obj_key,
                                                 fill=text_colors.get(obj_key, "black"), font=("Arial", 12, "bold"))
@@ -169,7 +163,7 @@ class QLearningApp:
         action = self.model.choose_action(r, c)
         nr, nc, reward = self.move_mouse(action)
 
-        self.model.update(r, c, action, reward, nr, nc)  # [cite: 73]
+        self.model.update(r, c, action, reward, nr, nc)
         self.mouse_pos = [nr, nc]
 
         if self.current_episode % 2 == 0 or self.speed_slider.get() > 10:

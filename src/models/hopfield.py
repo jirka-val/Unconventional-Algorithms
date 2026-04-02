@@ -8,7 +8,7 @@ class HopfieldNetwork:
         self.weights = np.zeros((n_neurons, n_neurons))
 
     def train(self, patterns):
-        """Učení pomocí skalárního součinu (Hebbiánské učení)"""
+        """Učení pomocí skalárního součinu"""
         for p in patterns:
             p = p.flatten()
             # W = M^T * M
@@ -21,7 +21,7 @@ class HopfieldNetwork:
         """Synchronní obnova: V_i = sgn(sum(W_ij * V_j))"""
         v = pattern.flatten()
         new_v = np.sign(np.dot(self.weights, v))
-        # Pokud je výsledek 0, nastavíme na 1 (standardní u threshold = 0)
+        # Pokud je výsledek 0, nastavíme na 1
         new_v[new_v == 0] = 1
         return new_v.reshape(pattern.shape)
 

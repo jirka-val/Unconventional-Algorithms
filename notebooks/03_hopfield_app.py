@@ -77,7 +77,7 @@ class App:
         self.clear()
 
     def inspect_pattern(self):
-        """Otevře okno s detaily vzoru, jak je na tvém novém obrázku."""
+        """Otevře okno s detaily vzoru"""
         selection = self.pattern_listbox.curselection()
         if not selection:
             return
@@ -97,7 +97,6 @@ class App:
                 color = "black" if pattern[r, c] == 1 else "white"
                 sub_canvas.create_rectangle(c * cell, r * cell, (c + 1) * cell, (r + 1) * cell, fill=color)
 
-        # Tlačítka podle tvého obrázku [cite: 33, 35, 36, 38]
         btn_p = tk.Frame(inspect_win)
         btn_p.pack(side=tk.RIGHT, padx=10)
         tk.Button(btn_p, text="Show matrix", command=lambda: print(pattern)).pack(fill="x")
@@ -106,7 +105,6 @@ class App:
             fill="x", pady=10)
 
     def forget(self, idx, window):
-        # Poznámka: Hopfieldova síť neumí jen tak "zapomenout" jeden vzor z matice vah bez přepočítání všech
         self.saved_patterns.pop(idx)
         self.pattern_listbox.delete(idx)
         # Resetujeme síť a naučíme ji zbývající vzory znovu

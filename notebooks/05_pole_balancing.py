@@ -136,7 +136,7 @@ class CartPoleApp:
                 next_state, reward, term, trunc, _ = env.step(action)
                 done = term or trunc
 
-                # Úprava odměny pro rychlejší učení (penalizace za pád)
+                # Úprava odměny pro rychlejší učení
                 adj_reward = reward if not done else -10
                 self.agent.remember(state, int(action), adj_reward, next_state, done)
 
