@@ -13,7 +13,7 @@ class QLearningModel:
         # Hyperparametry
         self.lr = 0.1  # Learning rate (alfa)
         self.discount = 0.95  # Discount factor (gamma)
-        self.epsilon = 0.1  # Epsilon-greedy (průzkum vs. využití)
+        self.epsilon = 0.1  # Epsilon-greedy
 
     def get_state(self, r, c):
         return r * self.cols + c

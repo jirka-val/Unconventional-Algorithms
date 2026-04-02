@@ -6,11 +6,11 @@ import random
 import os
 from collections import deque
 
-
 # Definice architektury neuronové sítě
 class QNetwork(nn.Module):
     def __init__(self, state_dim, action_dim):
         super(QNetwork, self).__init__()
+
         # Síť se dvěma skrytými vrstvami pro aproximaci Q-funkce
         self.fc = nn.Sequential(
             nn.Linear(state_dim, 128),
@@ -23,17 +23,16 @@ class QNetwork(nn.Module):
     def forward(self, x):
         return self.fc(x)
 
-
-# Třída agenta ovládajícího učení a rozhodování
 class DQNAgent:
     def __init__(self, state_dim, action_dim):
         self.state_dim = state_dim
         self.action_dim = action_dim
-        # Paměť pro ukládání předchozích zkušeností (Experience Replay)
+
+        # Paměť pro ukládání předchozích zkušeností
         self.memory = deque(maxlen=2000)
 
         # Hyperparametry posilovaného učení
-        self.gamma = 0.95  # Diskontní faktor (váha budoucích odměn)
+        self.gamma = 0.95  # váha budoucích odměn
         self.epsilon = 1.0  # Počáteční míra náhodného průzkumu
         self.epsilon_min = 0.01  # Minimální míra průzkumu
         self.epsilon_decay = 0.995  # Rychlost snižování náhody
@@ -58,12 +57,11 @@ class DQNAgent:
         self.memory.append((state, action, reward, next_state, done))
 
     def train(self, batch_size):
-        """Trénink sítě na náhodném vzorku z paměti (Experience Replay)."""
+        """Trénink sítě na náhodném vzorku z paměti """
         if len(self.memory) < batch_size: return
-
         minibatch = random.sample(self.memory, batch_size)
+
         for state, action, reward, next_state, done in minibatch:
-            # Výpočet cílové hodnoty (Target) pomocí Bellmanovy rovnice
             target = reward
             if not done:
                 next_t = torch.FloatTensor(next_state).unsqueeze(0)

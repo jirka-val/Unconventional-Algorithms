@@ -126,7 +126,7 @@ class CartPoleApp:
 
             state, _ = env.reset()
             score = 0
-            self.progress['value'] = (e / max_episodes) * 100
+            self.progress['value'] = (e / max_episodes) * 1000
 
             for _ in range(500):
                 if not self.running: break
@@ -150,7 +150,7 @@ class CartPoleApp:
             self.root.after(0, self.draw_chart)
             self.status_var.set(f"Ep: {e + 1}/{max_episodes} | Last Score: {score}")
 
-            if score >= 495:
+            if score >= 5000:
                 self.status_var.set("Status: Goal Reached!")
                 break
 
