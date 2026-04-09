@@ -4,3 +4,4 @@ jupyter
 pandas
 gymnasium[classic_control]
 torch
+plotly
