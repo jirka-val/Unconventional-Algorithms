@@ -59,8 +59,15 @@ def main():
         {'a': 0.49, 'b': -0.08, 'c': 0.08, 'd': 0.08, 'e': 0.49, 'f': 0.08, 'g': 0.08, 'h': -0.08, 'i': 0.49, 'j': 0.00, 'k': 2.00, 'l': 0.00}
     ]
 
+    tree_3d_params = [
+        {'a': 0.05, 'b': 0.00, 'c': 0.00, 'd': 0.00, 'e': 0.40, 'f': 0.00, 'g': 0.00, 'h': 0.00, 'i': 0.05, 'j': 0.00, 'k': 0.00, 'l': 0.00},
+        {'a': 0.46, 'b': -0.15, 'c': 0.39, 'd': 0.38, 'e': 0.44, 'f': 0.13, 'g': -0.25, 'h': 0.21, 'i': 0.45, 'j': 0.00, 'k': 1.00, 'l': 0.00},
+        {'a': 0.47, 'b': 0.15, 'c': -0.39, 'd': -0.38, 'e': 0.44, 'f': 0.13, 'g': 0.25, 'h': 0.21, 'i': 0.45, 'j': 0.00, 'k': 1.10, 'l': 0.00},
+        {'a': 0.43, 'b': 0.28, 'c': 0.25, 'd': -0.25, 'e': 0.45, 'f': 0.35, 'g': -0.15, 'h': -0.35, 'i': 0.48, 'j': 0.00, 'k': 1.20, 'l': 0.00}
+    ]
+
     # Výběr modelu a generování
-    iterations = 200000
+    iterations = 100000
 
     # První model
     ifs1 = IFSModel(model1_params)
@@ -73,6 +80,12 @@ def main():
     points2 = ifs2.generate(iterations=iterations)
     print("Vykresluji druhý model...")
     plot_interactive_fractal(points2, "Second Model (IFS)")
+
+    # Třetí model
+    ifs2 = IFSModel(tree_3d_params)
+    points3 = ifs2.generate(iterations=iterations)
+    print("Vykresluji Třetí model...")
+    plot_interactive_fractal(points3, "Third Model (IFS)")
 
 
 if __name__ == "__main__":

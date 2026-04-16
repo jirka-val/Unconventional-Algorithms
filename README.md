@@ -19,7 +19,7 @@ modularitu a názornou vizualizaci pomocí knihoven **NumPy**, **Matplotlib** a 
 | **Task 4** | Q-learning and the game Find the cheese | ✅ Hotovo | 6 / 4 |
 | **Task 5** | Pole-balancing problem | ✅ Hotovo | 6 / 4 |
 | **Task 6** | L-systems | ✅ Hotovo | 5 / 3 |
-| **Task 7** | **IFS (Iterated Function Systems)** | ✅ Hotovo |   4   |
+| **Task 7** | **IFS (Iterated Function Systems)** | ✅ Hotovo | 5 / 4 |
 | Task 8     | TEA - Mandelbrot set or Julia's set | ⏳ Čeká |   4   |
 | Task 9     | Generation of 2D country using fractal geometry | ⏳ Čeká |   4   |
 | Task 10    | Theory of chaos: Logistic map, chaotic numbers... | ⏳ Čeká |   4   |
