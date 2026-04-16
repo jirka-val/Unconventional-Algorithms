@@ -13,15 +13,17 @@ class FractalModel:
         y = np.linspace(y_min, y_max, self.height)
         X, Y = np.meshgrid(x, y)
 
-        c = X + 1j * Y
+        c = X + 1j * Y   # spojíme X a Y do jedné matice komplexních čísel
         z = np.zeros_like(c)  # z_0 = 0
         fractal_img = np.zeros(c.shape, dtype=int)
 
         for i in range(self.max_iter):
             # Podmínka pro omezení sekvence: |z_n| <= m, kde m = 2
             mask = np.abs(z) <= 2
+
             # z_{n+1} = z_n^2 + c
             z[mask] = z[mask] ** 2 + c[mask]
+
             # Uložení čísla iterace pro obarvení
             fractal_img[mask] = i
 
@@ -37,11 +39,8 @@ class FractalModel:
         fractal_img = np.zeros(z.shape, dtype=int)
 
         for i in range(self.max_iter):
-            # Podmínka pro omezení sekvence: |z_n| <= m, kde m = 2
             mask = np.abs(z) <= 2
-            # z_{n+1} = z_n^2 + c
             z[mask] = z[mask] ** 2 + c_complex
-            # Uložení čísla iterace pro obarvení
             fractal_img[mask] = i
 
         return x, y, fractal_img
