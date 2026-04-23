@@ -12,7 +12,7 @@ def plot_interactive_fractal(x, y, z_data, title):
         z=z_data,
         x=x,
         y=y,
-        colorscale="Viridis",
+        colorscale="Viridis", # "Hot"
         hoverinfo='none',
         showscale=False
     ))
