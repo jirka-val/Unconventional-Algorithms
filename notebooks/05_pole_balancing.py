@@ -39,7 +39,7 @@ class CartPoleApp:
         tk.Label(param_frame, text="Max Episodes:").pack(anchor="w", pady=(5, 0))
         self.episodes_spin = tk.Spinbox(param_frame, from_=10, to=500, increment=10)
         self.episodes_spin.delete(0, "end")
-        self.episodes_spin.insert(0, "100")
+        self.episodes_spin.insert(0, "1000")
         self.episodes_spin.pack(fill="x")
 
         # Příprava plochy pro vykreslování grafu úspěšnosti

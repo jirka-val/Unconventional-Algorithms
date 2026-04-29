@@ -22,11 +22,11 @@ class FractalTerrain:
                 mid_x = (p1[0] + p2[0]) / 2.0
                 mid_y = (p1[1] + p2[1]) / 2.0
 
-                # Změříme aktuální délku úsečky pomocí Pythagorovy věty
+                # Změříme aktuální délku
                 line_length = math.hypot(p2[0] - p1[0], p2[1] - p1[1])
 
                 # Gaussovo rozdělení
-                # ale velikost výchylky odvodíme z délky aktuální úsečky a offsetu
+                # ale velikost výchylky odvodíme z délky úsečky a offsetu
                 displacement = random.gauss(0, 1) * (line_length / offset_factor)
 
                 mid_y += displacement
