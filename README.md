@@ -22,6 +22,6 @@ modularitu a názornou vizualizaci pomocí knihoven **NumPy**, **Matplotlib** a 
 | **Task 7** | **IFS (Iterated Function Systems)** | Hotovo | 5 / 4 |
 | Task 8     | TEA - Mandelbrot set or Julia's set | Hotovo | 5 / 4 |
 | Task 9     | Generation of 2D country using fractal geometry | Hotovo | 6 / 4 |
-| Task 10    | Theory of chaos: Logistic map, chaotic numbers... |  Čeká  |   4   |
-| Task 11    | Chaotic motion - double pendulum |  Čeká  |   4   |
-| Task 12    | Cellular automata - forest fire algorithm |  Čeká  |   3   |
+| Task 10    | Theory of chaos: Logistic map, chaotic numbers... |  Čeká  | 6 / 4 |
+| Task 11    | Chaotic motion - double pendulum |  Čeká  | 6 / 4 |
+| Task 12    | Cellular automata - forest fire algorithm |  Čeká  | 5 / 3 |

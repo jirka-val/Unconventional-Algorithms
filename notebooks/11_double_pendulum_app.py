@@ -80,7 +80,7 @@ class DoublePendulumApp:
         # Smyčka, která spočítá trajektorii pro každé kyvadlo zvlášť
         for i in range(self.num_pendulums):
             # Každé další kyvadlo má úhel posunutý o nepatrných 0.001 rad
-            state_0 = [th1_base + (i * 0.001), 0.0, th2_base, 0.0]
+            state_0 = [th1_base + (i * 0.000), 0.0, th2_base, 0.0]
 
             x1, y1, x2, y2, self.t = DoublePendulumModel.simulate(
                 state_0, t_max=30, dt=0.02, m1=m1, m2=m2, l1=l1, l2=l2
