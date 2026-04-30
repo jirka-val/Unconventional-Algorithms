@@ -11,6 +11,7 @@ class ForestFireModel:
         """
         Inicializuje mřížku s danou hustotou stromů.
         """
+
         # Vygenerujeme náhodnou mřížku podle hustoty
         grid = np.random.choice(
             [ForestFireModel.EMPTY, ForestFireModel.TREE],
@@ -32,27 +33,26 @@ class ForestFireModel:
         tree = (grid == ForestFireModel.TREE)
         fire = (grid == ForestFireModel.FIRE)
 
-        # Spočítáme hořící sousedy (Von Neumannovo okolí - 4 směry)
-        # Posuneme matici 'fire' do 4 stran a sečteme
+        # Spočítáme hořící sousedy
         burning_neighbors = np.zeros_like(grid, dtype=int)
         burning_neighbors[:-1, :] += fire[1:, :]  # Soused dole
         burning_neighbors[1:, :] += fire[:-1, :]  # Soused nahoře
         burning_neighbors[:, :-1] += fire[:, 1:]  # Soused vpravo
         burning_neighbors[:, 1:] += fire[:, :-1]  # Soused vlevo
 
-        # Pravidlo 1: Prázdné místo vyroste ve strom s pravděpodobností 'p'
+        # prázdné místo vyroste ve strom s pravděpodobností 'p'
         grow_mask = empty & (np.random.random(grid.shape) < p)
         new_grid[grow_mask] = ForestFireModel.TREE
 
-        # Pravidlo 2: Strom chytne, pokud hoří některý z jeho sousedů
+        # strom chytne, pokud hoří některý z jeho sousedů
         ignite_from_neighbor = tree & (burning_neighbors > 0)
 
-        # Pravidlo 3: Strom chytne sám od sebe (blesk) s pravděpodobností 'f'
+        # strom chytne sám od sebe s pravděpodobností 'f'
         ignite_randomly = tree & (np.random.random(grid.shape) < f)
 
         new_grid[ignite_from_neighbor | ignite_randomly] = ForestFireModel.FIRE
 
-        # Pravidlo 4: Hořící strom vyhoří a stane se prázdným místem
+        # hořící strom vyhoří a stane se prázdným místem
         new_grid[fire] = ForestFireModel.EMPTY
 
         return new_grid

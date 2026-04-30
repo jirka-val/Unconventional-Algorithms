@@ -52,10 +52,6 @@ class ForestFireApp:
         tk.Button(control_frame, text="Stop Animation", command=self.stop_animation, bg="#FFB6C1", height=2).pack(
             pady=5, fill=tk.X)
 
-        # Instrukce pro uživatele
-        tk.Label(control_frame, text="⚡ TIP: Click on the map\nto start a fire! ⚡", fg="red",
-                 font=("Arial", 11, "bold")).pack(pady=15)
-
         self.ani = None
         self.grid = None
 
@@ -94,7 +90,7 @@ class ForestFireApp:
         self.grid = ForestFireModel.initialize_grid(self.grid_size.get(), self.density.get())
 
         self.ax.clear()
-        self.ax.set_title("Interactive Forest Fire (CLICK TO IGNITE!)", color="red")
+        self.ax.set_title("Interactive Forest Fire", color="red")
         self.im = self.ax.imshow(self.grid, cmap=self.cmap, vmin=0, vmax=2)
 
         self.ani = FuncAnimation(

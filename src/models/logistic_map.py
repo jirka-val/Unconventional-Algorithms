@@ -38,11 +38,11 @@ class LogisticMapModel:
         return np.array(a_out), np.array(x_out)
 
     @staticmethod
-    def train_nn(epochs=1000):
-        # Generování trénovacích dat (parametr 'a' a náhodná populace 'x')
+    def train_nn(epochs=10000):
+        # Generování trénovacích dat
         a = np.random.uniform(0, 4.0, 10000)
         x = np.random.uniform(0, 1.0, 10000)
-        y = a * x * (1 - x) # Očekávaný výsledek X_{n+1}
+        y = a * x * (1 - x)
 
         inputs = np.column_stack((a, x))
         targets = y.reshape(-1, 1)
@@ -65,14 +65,10 @@ class LogisticMapModel:
 
     @staticmethod
     def predict_bifurcation(model, a_actual, x_actual):
-        """
-        Bere skutečné hodnoty (a, X_n) a odhadne pouze jeden krok (X_{n+1}).
-        """
+
         model.eval()
         with torch.no_grad():
-            # Spojíme skutečné 'a' a skutečné 'x' jako vstupy pro síť
             inputs = torch.tensor(np.column_stack((a_actual, x_actual)), dtype=torch.float32)
-            # Predikujeme jeden následující krok
             predicted_x = model(inputs).numpy().flatten()
 
         return a_actual, predicted_x
