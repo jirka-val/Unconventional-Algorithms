@@ -7,17 +7,21 @@ class DoublePendulumModel:
         """
         Počítá derivace pro odeint. Vrací [theta1_dot, theta1_ddot, theta2_dot, theta2_ddot]
         """
+
+        # aktuálního stavu
         theta1, omega1, theta2, omega2 = state
         delta = theta1 - theta2
 
         # Společná část jmenovatele [m1 + m2 * sin^2(theta1 - theta2)]
+        # setrvačnosti a odporu
         den_common = m1 + m2 * (np.sin(delta) ** 2)
         den1 = l1 * den_common
         den2 = l2 * den_common
 
         dydx = np.zeros_like(state)
 
-        # d(theta_1)/dt = omega_1
+        # theta_1 = omega_1
+        # změna polohy
         dydx[0] = omega1
 
         # rozdil oproti prezentace -> mělo na levé straně úhlovou rychlost theta s tečkou
@@ -28,7 +32,8 @@ class DoublePendulumModel:
             - (m1 + m2) * g * np.sin(theta1)
         ) / den1
 
-        # d(theta_2)/dt = omega_2
+        # theta_2 = omega_2
+        # změna polohy pro první
         dydx[2] = omega2
 
         # ten samy problem jako u omega_1

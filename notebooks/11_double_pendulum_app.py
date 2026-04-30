@@ -33,8 +33,8 @@ class DoublePendulumApp:
         self.l1 = tk.DoubleVar(value=1.0)
         self.l2 = tk.DoubleVar(value=1.0)
 
-        # Počáteční úhly (v násobcích PÍ - dle ukázky v PDF)
-        self.theta1_pi = tk.DoubleVar(value=0.99)  # např. 0.5 * pi
+        # Počáteční úhly
+        self.theta1_pi = tk.DoubleVar(value=0.99)
         self.theta2_pi = tk.DoubleVar(value=1.01)
 
         # Tvorba inputů
@@ -60,21 +60,36 @@ class DoublePendulumApp:
         tk.Entry(parent, textvariable=variable, justify='center').pack()
 
     def start_animation(self):
-        self.stop_animation()  # Zastavíme předchozí animaci pokud běží
+        self.stop_animation()
 
         # Získání dat z UI
         m1, m2 = self.m1.get(), self.m2.get()
         l1, l2 = self.l1.get(), self.l2.get()
-        th1 = self.theta1_pi.get() * np.pi
-        th2 = self.theta2_pi.get() * np.pi
+        th1_base = self.theta1_pi.get() * np.pi
+        th2_base = self.theta2_pi.get() * np.pi
 
-        # Počáteční stav [theta1, omega1, theta2, omega2] (počáteční rychlosti jsou 0 dle PDF)
-        state_0 = [th1, 0.0, th2, 0.0]
+        # Přidání více kyvadel
+        self.num_pendulums = 3
+        colors = ['red', 'blue', 'green']
 
-        # Vypočítáme celou trajektorii dopředu (např. 20 sekund, snímkování 50fps)
-        self.x1, self.y1, self.x2, self.y2, self.t = DoublePendulumModel.simulate(
-            state_0, t_max=30, dt=0.02, m1=m1, m2=m2, l1=l1, l2=l2
-        )
+        self.all_x1 = []
+        self.all_y1 = []
+        self.all_x2 = []
+        self.all_y2 = []
+
+        # Smyčka, která spočítá trajektorii pro každé kyvadlo zvlášť
+        for i in range(self.num_pendulums):
+            # Každé další kyvadlo má úhel posunutý o nepatrných 0.001 rad
+            state_0 = [th1_base + (i * 0.001), 0.0, th2_base, 0.0]
+
+            x1, y1, x2, y2, self.t = DoublePendulumModel.simulate(
+                state_0, t_max=30, dt=0.02, m1=m1, m2=m2, l1=l1, l2=l2
+            )
+
+            self.all_x1.append(x1)
+            self.all_y1.append(y1)
+            self.all_x2.append(x2)
+            self.all_y2.append(y2)
 
         # Příprava os a grafiky
         self.ax.clear()
@@ -82,12 +97,18 @@ class DoublePendulumApp:
         self.ax.set_xlim(-max_len - 0.5, max_len + 0.5)
         self.ax.set_ylim(-max_len - 0.5, max_len + 0.5)
         self.ax.set_aspect('equal')
-        self.ax.set_title("Chaotic Double Pendulum")
+        self.ax.set_title("Motýlí efekt: 3 kyvadla s rozdílem 0.001 rad")
         self.ax.grid(True, linestyle='--', alpha=0.5)
 
-        # Grafické prvky kyvadla
-        self.line, = self.ax.plot([], [], 'o-', lw=3, color='black', markersize=8)  # Tyče kyvadla
-        self.trace, = self.ax.plot([], [], '-', lw=1, color='red', alpha=0.7)  # Ocas trajektorie
+        # Vytvoření grafických prvků pro každé kyvadlo
+        self.lines = []
+        self.traces = []
+
+        for i in range(self.num_pendulums):
+            line, = self.ax.plot([], [], 'o-', lw=2, color=colors[i], markersize=6)
+            trace, = self.ax.plot([], [], '-', lw=1, color=colors[i], alpha=0.5)
+            self.lines.append(line)
+            self.traces.append(trace)
 
         # Spuštění animace
         self.ani = FuncAnimation(
@@ -98,17 +119,18 @@ class DoublePendulumApp:
         self.canvas.draw()
 
     def update_frame(self, i):
-        # Aktualizace tyčí kyvadla (od bodu 0,0 k bodu 1 a od bodu 1 k bodu 2)
-        thisx = [0, self.x1[i], self.x2[i]]
-        thisy = [0, self.y1[i], self.y2[i]]
-        self.line.set_data(thisx, thisy)
-
-        # Aktualizace stopy (vykreslujeme posledních 100 bodů dráhy kyvadla 2)
-        history_len = 100
+        history_len = 50  # delka čary za kyvadlem
         start_idx = max(0, i - history_len)
-        self.trace.set_data(self.x2[start_idx:i], self.y2[start_idx:i])
 
-        return self.line, self.trace
+        # Aktualizace všech kyvadel najednou
+        for p in range(self.num_pendulums):
+            thisx = [0, self.all_x1[p][i], self.all_x2[p][i]]
+            thisy = [0, self.all_y1[p][i], self.all_y2[p][i]]
+
+            self.lines[p].set_data(thisx, thisy)
+            self.traces[p].set_data(self.all_x2[p][start_idx:i], self.all_y2[p][start_idx:i])
+
+        return self.lines + self.traces
 
     def stop_animation(self):
         if self.ani and self.is_running:
